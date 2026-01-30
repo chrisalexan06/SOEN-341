@@ -3,6 +3,8 @@ Celina Younes
 Léa Saad
 Bianca Ignat
 Mohamed Salah
+Christina Alexandrakis 
+Sarah Tannous
 Brainstorming ideas:
 Add friends feature, see others meals,
 google maps to add local gyms, stores, calculator for calories
