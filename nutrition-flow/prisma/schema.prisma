@@ -7,3 +7,53 @@ datasource db {
     databaseUrl = env("DATABASE_URL")
     directUrl = env("DIRECT_URL")
 }
+
+// Dropdown choices using enum
+enum ActivityLevel {
+  SEDENTARY
+  LIGHT
+  MODERATE
+  ACTIVE
+  VERY_ACTIVE
+}
+
+enum Goal {
+  BULK
+  CUT
+  MAINTAIN
+}
+
+enum DietaryType {
+  NONE
+  VEGAN
+  VEGETARIAN
+  KETO
+  HALAL
+  GLUTEN_FREE
+  PESCATARIAN
+}
+
+model User {
+  id            String   @id
+
+  email         String   @unique
+  firstName     String
+  lastName      String
+  age           Int
+
+  currentWeight Float
+  targetWeight  Float?        // optional 
+  height        Float
+
+  activityLevel ActivityLevel // dropdown enforced
+  goal          Goal          
+  dietaryType   DietaryType   
+
+  allergies     String[]      // if none store []
+
+  meals         Meal[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+         
+}
