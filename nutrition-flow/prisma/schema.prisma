@@ -1,14 +1,14 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    databaseUrl = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-// Dropdown choices using enum
+// --- ENUMS (Great choice!) ---
 enum ActivityLevel {
   SEDENTARY
   LIGHT
@@ -33,27 +33,49 @@ enum DietaryType {
   PESCATARIAN
 }
 
+// --- MODELS ---
+
 model User {
-  id            String   @id
+  id            String    @id // Clerk ID
 
-  email         String   @unique
-  firstName     String
-  lastName      String
-  age           Int
+  email         String    @unique
+  firstName     String?   // Made optional just in case Clerk doesn't send it
+  lastName      String?
+  
+  // ⚠️ These MUST be optional (?) so we can create the user 
+  // BEFORE they finish the onboarding form.
+  age           Int?
+  currentWeight Float?
+  targetWeight  Float?
+  height        Float?
 
-  currentWeight Float
-  targetWeight  Float?        // optional 
-  height        Float
+  // Enums (Also optional for now)
+  activityLevel ActivityLevel? 
+  goal          Goal?          
+  dietaryType   DietaryType?   
 
-  activityLevel ActivityLevel // dropdown enforced
-  goal          Goal          
-  dietaryType   DietaryType   
-
-  allergies     String[]      // if none store []
+  allergies     String[]  // default is empty array [] automatically
 
   meals         Meal[]
 
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-         
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// You were missing this table!
+model Meal {
+  id        String   @id @default(uuid())
+  
+  name      String
+  imageUrl  String?
+  
+  calories  Int
+  protein   Int
+  carbs     Int
+  fats      Int
+  
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
 }
