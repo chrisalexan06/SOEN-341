@@ -70,7 +70,90 @@ export default function SignupPage() {
         </div>
       </div>
 
-  
+      {/* RIGHT SIDE OF THE PAGE */}
+      <div className="flex-1 flex flex-col justify-center items-center p-8 bg-sage-green-light overflow-y-auto">
+        <div className="w-full max-w-md space-y-8 py-12">
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl mb-2">Create Account</h2>
+            <p className="text-muted-foreground">
+              Start your journey with NutriFlow
+            </p>
+          </div>
+
+          {error && (
+            <div className="p-3 rounded-lg bg-red-50 text-red-600 text-sm border border-red-200">
+              {error}
+            </div>
+          )}
+
+          <form className="space-y-4" onSubmit={handleSignup}>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Email</label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg border bg-white"
+                style={{ borderColor: "var(--border)" }}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Password</label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg border bg-white"
+                style={{ borderColor: "var(--border)" }}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Verify Password</label>
+              <input
+                type="password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg border bg-white"
+                style={{ borderColor: "var(--border)" }}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full h-12 text-white mt-4"
+              style={{ backgroundColor: "var(--sage-green)" }}
+            >
+              Sign Up
+            </Button>
+          </form>
+
+          <div className="text-center text-sm">
+            <span className="text-muted-foreground">Already have an account? </span>
+            <button
+              onClick={() => router.push("/login")}
+              className="hover:underline font-medium"
+              style={{ color: "var(--sage-green-dark)" }}
+            >
+              Log in
+            </button>
+
+            {/*FIX THIS LATER JUST A TSIGN OUT BUTTON TO TESTING*/}
+            <button
+              onClick={() => signOut()}
+              className="text-sm underline text-gray-600"
+            >
+              Sign out
+</button>
+
+            
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
