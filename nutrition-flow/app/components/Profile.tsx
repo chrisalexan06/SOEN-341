@@ -30,7 +30,7 @@ export function Profile() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/dashboard")}
             >
               <ArrowLeft className="w-5 h-5" />
             </Button>
