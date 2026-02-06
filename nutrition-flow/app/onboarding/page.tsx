@@ -50,15 +50,22 @@ export default function OnboardingPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          userId: user.id, //  Clerk user ID or else does not let the sign in happen
+          email: user.emailAddresses[0]?.emailAddress,
           ...formData,
           allergies: allergyArray,
         }),
       });
 
-      if (!res.ok) throw new Error("Failed to save profile");
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to save profile");
+      }
 
       toast.success("Profile setup complete!");
       router.push("/dashboard"); 
+
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong. Please try again.");
