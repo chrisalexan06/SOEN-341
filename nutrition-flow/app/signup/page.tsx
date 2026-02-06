@@ -146,13 +146,7 @@ export default function SignupPage() {
               Log in
             </button>
 
-            {/*FIX THIS LATER JUST A TSIGN OUT BUTTON TO TESTING*/}
-            <button
-              onClick={() => signOut()}
-              className="text-sm underline text-gray-600"
-            >
-              Sign out
-            </button>
+            
 
             
           </div>
