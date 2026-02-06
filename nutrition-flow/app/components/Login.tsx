@@ -14,16 +14,25 @@ export function Login() {
   const [error, setError] = useState("");
   const router = useRouter();
 
+  //handles email/password login
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return; //stop if email is invalid
+}
+
     try {
+      //attempt to sign in with email and password
       const result = await signIn?.create({
         identifier: email,
         password,
       });
 
+      //if sign in is complete, set active session and redirect to dashboard
       if (result?.status === "complete") {
         await setActive?({ session: result.createdSessionId }):
         router.push("/dashboard");
