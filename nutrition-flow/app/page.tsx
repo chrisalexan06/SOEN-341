@@ -59,7 +59,7 @@ export default function Home() {
           <p className="text-xl text-muted-foreground text-center font-medium">
             Eat smarter. Feel better. Live lighter. <br/> Your personal student companion for healthy living.
           </p>
-          <Link href="/login">
+          <Link href="/signup">
             <Button 
               size="lg" 
               className="text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all"
