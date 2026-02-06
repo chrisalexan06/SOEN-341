@@ -91,9 +91,151 @@ export default function OnboardingPage() {
             priority
           />
         </div>
+
       </div>
 
       
+      
+
+
+  {/* RIGHT SIDE: Onboarding Form (Sage Green) */}
+      <div className="flex-1 flex flex-col justify-center items-center p-8 bg-sage-green-light overflow-y-auto">
+        <div className="w-full max-w-md space-y-8 py-12">
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl mb-2 font-bold">Complete Your Profile</h2>
+            <p className="text-muted-foreground">Please fill in the required fields</p>
+          </div>
+
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Age *</label>
+                <input
+                  type="number"
+                  name="age"
+                  required
+                  value={formData.age}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border bg-white"
+                  style={{ borderColor: 'var(--border)' }}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Height (cm) *</label>
+                <input
+                  type="number"
+                  name="height"
+                  required
+                  value={formData.height}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border bg-white"
+                  style={{ borderColor: 'var(--border)' }}
+                />
+              </div>
+            </div>
+
+            {/* Weights Section */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Current Weight (lbs) *</label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  name="currentWeight"
+                  required
+                  value={formData.currentWeight}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-lg border bg-white"
+                  style={{ borderColor: 'var(--border)' }}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Target Weight (lbs)</label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  name="targetWeight"
+                  value={formData.targetWeight}
+                  onChange={handleChange}
+                  placeholder="Optional"
+                  className="w-full px-4 py-3 rounded-lg border bg-white"
+                  style={{ borderColor: 'var(--border)' }}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Activity Level *</label>
+              <select 
+                name="activityLevel"
+                required
+                value={formData.activityLevel}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-lg border bg-white"
+                style={{ borderColor: 'var(--border)' }}
+              >
+                <option value="" disabled>Select frequency</option>
+                <option value="SEDENTARY">Sedentary (0-1 time a week)</option>
+                <option value="LIGHT">Light (1-2 times a week)</option>
+                <option value="MODERATE">Moderate (3-4 times a week)</option>
+                <option value="ACTIVE">Active (5-6 times a week)</option>
+                <option value="VERY_ACTIVE">Very Active (Daily)</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Your Goal *</label>
+              <select name="goal" required value={formData.goal} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border bg-white" style={{ borderColor: 'var(--border)' }}>
+                <option value="" disabled>Select goal</option>
+                <option value="MAINTAIN">Maintain Weight</option>
+                <option value="BULK">Bulk (Gain muscle)</option>
+                <option value="CUT">Cut (Lose weight)</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Dietary Preference *</label>
+              <select name="dietaryType" required value={formData.dietaryType} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border bg-white" style={{ borderColor: 'var(--border)' }}>
+                <option value="" disabled>Select diet</option>
+                <option value="NONE">None</option>
+                <option value="VEGAN">Vegan</option>
+                <option value="VEGETARIAN">Vegetarian</option>
+                <option value="KETO">Keto</option>
+                <option value="HALAL">Halal</option>
+                <option value="GLUTEN_FREE">Gluten Free</option>
+                <option value="PESCATARIAN">Pescatarian</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Allergies * (Write "None" if none)</label>
+              <input
+                type="text"
+                name="allergies"
+                required
+                value={formData.allergies}
+                onChange={handleChange}
+                placeholder="e.g. Peanuts, none"
+                className="w-full px-4 py-3 rounded-lg border bg-white"
+                style={{ borderColor: 'var(--border)' }}
+              />
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full h-12 text-white font-semibold mt-4"
+              disabled={isLoading}
+              style={{ backgroundColor: 'var(--sage-green)' }}
+            >
+              {isLoading ? "Saving..." : "Finish Setup"}
+            </Button>
+          </form>
+    
+
+    </div>
+      </div>
     </div>
   );
 }
