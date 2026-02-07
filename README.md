@@ -30,10 +30,12 @@ NutriFlow is a web application designed to help students plan meals, manage reci
 
 ## Tech Stack
 - Frontend: TypeScript, Next.js, Tailwind CSS
-- Backend: Node.js
-- Database: Prisma
+- Backend: Node.js (Server Actions)
+- Database: PostgreSQL (Hosted on Supabase)
+- ORM: Prisma
+- Cloud Host: Vercel
+- Authentication: Clerk
 - Design: Figma
-- Cloud Host: Supabase
 
 ## Future Enhancements
 ### Social Features
